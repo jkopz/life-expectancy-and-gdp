@@ -1,71 +1,92 @@
-# 🌍 Life Expectancy and GDP: Comparative Empirical Analysis (2000–2015)
+# 🌍 Life Expectancy and GDP: A Quarter-Century Empirical Study & Pandemic Shock Analysis (2000–2024)
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-2.0%2B-150458?logo=pandas&logoColor=white)](https://pandas.pydata.org/)
 [![Seaborn](https://img.shields.io/badge/Seaborn-0.13%2B-4c72b0)](https://seaborn.pydata.org/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)](https://jupyter.org/)
+[![Data: World Bank](https://img.shields.io/badge/Data-World%20Bank%20API-0072bc)](https://data.worldbank.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-An empirical investigation into the longitudinal relationship between Gross Domestic Product (GDP) and Life Expectancy at birth across six diverse nations (**Chile, China, Germany, Mexico, the United States, and Zimbabwe**) between **2000 and 2015**.
+An empirical investigation into the longitudinal relationship between Gross Domestic Product (GDP) and Life Expectancy at birth across six diverse nations (**Chile, China, Germany, Mexico, the United States, and Zimbabwe**) across **a quarter-century (2000–2024)**.
 
-Based on observational data published by the **World Health Organization (WHO)** and the **World Bank**, this project evaluates univariate distributions, time-series growth trajectories, national health-wealth correlations, and tests the classical **Preston Curve** hypothesis.
-
----
-
-## 📌 Executive Summary & Key Findings
-
-| Country | Life Exp (2000) | Life Exp (2015) | Longevity Gain | GDP (2000) | GDP (2015) | GDP Growth (%) | GDP CAGR | Pearson Correlation ($r$) |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Germany** | 78.0 yrs | 81.0 yrs | **+3.0 yrs** | $1,950.0 B | $3,375.6 B | +73.1% | 3.7% | **0.933** |
-| **Chile** | 77.3 yrs | 80.5 yrs | **+3.2 yrs** | $77.9 B | $242.5 B | +211.5% | 7.9% | **0.950** |
-| **United States** | 76.8 yrs | 79.3 yrs | **+2.5 yrs** | $10,300.0 B | $18,100.0 B | +75.7% | 3.8% | **0.982** |
-| **Mexico** | 74.8 yrs | 76.7 yrs | **+1.9 yrs** | $683.6 B | $1,152.3 B | +68.5% | 3.5% | **0.932** |
-| **China** | 71.7 yrs | 76.1 yrs | **+4.4 yrs** | $1,211.3 B | $11,064.7 B | **+813.4%** | **15.9%** | **0.909** |
-| **Zimbabwe** | 46.0 yrs | 60.7 yrs | **+14.7 yrs** | $6.7 B | $16.3 B | +143.7% | 6.1% | **0.966** |
-
-### 🔍 Major Takeaways
-
-1. **Within-Nation vs. Global Dynamics (The Preston Curve):**
-   * Within every individual country, the correlation between GDP expansion and life expectancy gains is extraordinarily strong ($r \ge 0.91$).
-   * However, pooling all nations together in a raw linear model yields a weak correlation of only **$r = 0.34$**, because wealth operates on orders of magnitude differences.
-   * Applying a logarithmic transformation ($\log_{10}(\text{GDP})$) raises the pooled correlation to **$r = 0.79$**, confirming Samuel Preston's famous 1975 economic hypothesis: **diminishing marginal returns to health from GDP increases**.
-2. **Zimbabwe's Historic Turnaround:**
-   * After plummeting to a low of **44.3 years in 2004** amid the HIV/AIDS epidemic and socioeconomic instability, Zimbabwe achieved a remarkable recovery to **60.7 years by 2015** — an increase of **+16.4 years** from its nadir (+14.7 years overall).
-3. **China's Unprecedented Economic Expansion:**
-   * Following China's WTO entry in late 2001, GDP expanded from $1.21 Trillion to $11.06 Trillion (+813.4%, CAGR of 15.9%), raising life expectancy from 71.7 to 76.1 years.
-4. **The Chile Paradox:**
-   * Chile achieved a higher life expectancy in 2015 than the United States (**80.5 years vs. 79.3 years**), despite having a GDP that is less than 2% of the US economy. This highlights that national health systems, public health policy, and social safety nets play a crucial role beyond raw national wealth.
+While standard portfolio studies examine only a static 2000–2015 dataset, this project investigates the full historical trajectory up to 2024 using the **World Bank Open Data API**. It divides the past 25 years into two contrasting historical eras:
+1. **Era 1 (2000–2015): The Continuous Growth & Convergence Era** — Stable GDP expansion, rising life expectancy, and empirical validation of the classic **Preston Curve**.
+2. **Era 2 (2016–2024): The Pandemic Shock & Decoupling Era** — The demographic disruption of the COVID-19 pandemic, sharp longevity declines in advanced economies, and the subsequent **health-wealth decoupling**.
 
 ---
 
-## 📊 Visualizations
+## 📌 Two-Era Comparative Summary (2000–2024)
 
-### 1. Macro Trends (Shared Scales)
-A side-by-side view illustrating the diverging economic scales alongside the steady convergence in human longevity:
+| Country | LE (2000) | LE (2015) | LE (2019) | COVID Low (2020–22) | Pandemic Shock ($\Delta$) | LE (2024) | GDP (2000) | GDP (2024) | $r$ Era 1 (00–15) | $r$ Era 2 (16–24) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Chile** | 77.1 yrs | 80.0 yrs | 80.3 yrs | 78.9 yrs | **-1.45 yrs** | **81.4 yrs** | $78.3 B | $329.3 B | **+0.928** | **+0.308** |
+| **Germany** | 77.9 yrs | 80.6 yrs | 81.3 yrs | 80.6 yrs | **-0.68 yrs** | **80.8 yrs** | $1,967.0 B | $4,685.6 B | **+0.923** | **-0.378** |
+| **USA** | 76.6 yrs | 78.7 yrs | 78.8 yrs | 76.3 yrs | **-2.46 yrs** | **78.9 yrs** | $10,251.0 B | $29,298.0 B | **+0.961** | **-0.024** |
+| **China** | 72.3 yrs | 77.0 yrs | 77.9 yrs | 78.0 yrs | *+0.08 yrs* | **78.0 yrs** | $1,223.8 B | $18,729.7 B | **+0.955** | **+0.867** |
+| **Mexico** | 72.6 yrs | 74.4 yrs | 74.5 yrs | 69.8 yrs | **-4.78 yrs** | **75.3 yrs** | $742.1 B | $1,830.5 B | **+0.910** | **+0.453** |
+| **Zimbabwe** | 46.0 yrs | 59.0 yrs | 61.1 yrs | 60.1 yrs | **-0.93 yrs** | **63.1 yrs** | $6.7 B | $41.5 B | **+0.964** | **+0.210** |
+
+---
+
+## 🔍 Major Research Findings
+
+### 1. The COVID-19 Longevity Reversal
+* Between 2019 and 2021, the global pandemic triggered unprecedented drops in life expectancy across high- and middle-income nations.
+* **Mexico** suffered a devastating contraction of **-4.78 years** (falling to 69.8 years in 2021), before rebounding strongly to 75.3 years by 2024.
+* **The United States** experienced a decline of **-2.46 years** (from 78.8 to 76.3 years) — the largest two-year longevity contraction in modern peacetime US history.
+* **Chile and Germany** also registered notable dips (-1.45y and -0.68y), while **China's** zero-COVID policy delayed major mortality shocks until late 2022/2023.
+
+### 2. The Health-Wealth Decoupling
+* **Era 1 (2000–2015):** Every nation exhibited a near-perfect positive correlation ($r > 0.91$). Economic growth and longevity advanced hand in hand.
+* **Era 2 (2016–2024):** This correlation completely broke down:
+  * In the **USA**, Pearson $r$ collapsed from **+0.961** to **-0.024** (complete decoupling).
+  * In **Germany**, the correlation inverted to **-0.378** (GDP continued growing from $3.9T to $4.7T while life expectancy dipped).
+* **Econometric Takeaway:** During an acute global health emergency, aggregate national wealth and stimulus-driven GDP growth cannot instantly substitute for public health resilience, pathogen containment, and healthcare surge capacity.
+
+### 3. The Preston Curve in Action
+* Across the entire 25-year panel, a naive linear fit yields a weak pooled correlation of **$r = 0.28$**.
+* When log-transformed ($\log_{10}(\text{GDP})$), the pooled correlation jumps to **$r = 0.77$**, confirming Samuel Preston's 1975 hypothesis of **diminishing marginal health returns to wealth**.
+
+### 4. Long-Term Champions (2000–2024)
+* **Greatest Longevity Gain:** **Zimbabwe** gained **+17.1 years** (46.0y to 63.1y), following the expansion of international antiretroviral therapy (ART) and malaria interventions.
+* **Greatest Economic Expansion:** **China's** GDP surged from **$1.22 Trillion to $18.73 Trillion (+1,430%)**, transitioning into an upper-middle-income economy.
+
+---
+
+## 📊 Visual Gallery
+
+### 1. The Pandemic Shock & Health-Wealth Decoupling (2015–2024)
+Visualizing the acute COVID-19 longevity dip alongside the collapse of the correlation coefficient ($r$) in Era 2:
+
+![COVID-19 Shock and Decoupling](figures/7_era_comparison_covid_shock.png)
+
+---
+
+### 2. Macro Trends across the Quarter-Century (2000–2024)
+Comparing the diverging economic scales alongside the convergence in longevity:
 
 ![Combined Macro Trends](figures/5_combined_macro_trends.png)
 
 ---
 
-### 2. The Preston Curve: Linear vs. Logarithmic Correlation
-Demonstrating why a naive linear model misrepresents cross-country health economics, whereas a logarithmic model fits the diminishing returns of wealth on lifespan:
+### 3. The Preston Curve: Linear vs. Logarithmic Law
+Why log-transforming GDP linearizes cross-national health economics:
 
 ![Preston Curve Analysis](figures/6_preston_curve_analysis.png)
 
 ---
 
-### 3. Country-by-Country Trajectories (Faceted Independent Scales)
-Faceted time-series reveal the individual trajectories without smaller economies being compressed by US and Chinese GDP totals:
+### 4. Country-by-Country Trajectories (Independent Scales)
 
-| GDP Evolution (2000–2015) | Life Expectancy Evolution (2000–2015) |
+| GDP Trajectories (2000–2024) | Life Expectancy Trajectories (COVID-19 in Red) |
 | :---: | :---: |
 | ![Faceted GDP](figures/3_gdp_trends_faceted.png) | ![Faceted Life Expectancy](figures/4_life_expectancy_trends_faceted.png) |
 
 ---
 
-### 4. Country Averages & Baseline Distributions
+### 5. Baseline Distributions & Long-Term Averages
 
-| Univariate Distributions | National 16-Year Averages |
+| Univariate Distributions (2000–2024) | 25-Year National Averages |
 | :---: | :---: |
 | ![Distributions](figures/1_distributions.png) | ![Country Averages](figures/2_country_averages.png) |
 
@@ -75,19 +96,23 @@ Faceted time-series reveal the individual trajectories without smaller economies
 
 ```text
 life-expectancy-and-gdp/
-├── all_data.csv                 # Raw dataset (WHO & World Bank)
-├── life_expectancy_gdp.ipynb    # Comprehensive Jupyter Notebook analysis
-├── analysis.py                  # Standalone CLI analysis script & figure generator
+├── all_data.csv                 # Original 2000–2015 baseline dataset
+├── all_data_extended.csv        # Extended 2000–2024 dataset (World Bank API)
+├── fetch_worldbank_data.py      # Automated World Bank API data ingestion script
+├── life_expectancy_gdp.ipynb    # Comprehensive 2-Part interactive Jupyter Notebook
+├── analysis.py                  # Standalone CLI analysis & figure generation pipeline
 ├── requirements.txt             # Python dependencies
-├── pyproject.toml               # Modern Python packaging configuration
-├── .gitignore                   # Git ignore rules (clean repository standard)
-├── figures/                     # High-resolution (300 DPI) exported visualizations
+├── pyproject.toml               # Python project configuration
+├── LICENSE                      # MIT Open Source License
+├── .gitignore                   # Clean repository ignore rules
+├── figures/                     # 7 High-resolution (300 DPI) exported visualizations
 │   ├── 1_distributions.png
 │   ├── 2_country_averages.png
 │   ├── 3_gdp_trends_faceted.png
 │   ├── 4_life_expectancy_trends_faceted.png
 │   ├── 5_combined_macro_trends.png
-│   └── 6_preston_curve_analysis.png
+│   ├── 6_preston_curve_analysis.png
+│   └── 7_era_comparison_covid_shock.png
 └── README.md                    # Project documentation
 ```
 
@@ -95,66 +120,61 @@ life-expectancy-and-gdp/
 
 ## 🛠️ Installation & Quickstart
 
-### Prerequisites
-* Python 3.9 or higher
-* `pip` or any virtual environment manager (`venv`, `conda`, `uv`)
-
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/your-username/life-expectancy-and-gdp.git
 cd life-expectancy-and-gdp
 ```
 
-### 2. Create and activate a virtual environment
+### 2. Set up environment
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-```
-
-### 3. Install dependencies
-```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the automated analysis
-To generate all statistical summaries and re-export the figures:
+### 3. Fetch latest data (Optional)
+To pull fresh, live data from the World Bank API:
+```bash
+python fetch_worldbank_data.py
+```
+
+### 4. Run the full analysis pipeline
+Generates all statistical metrics and exports all 7 figures to `figures/`:
 ```bash
 python analysis.py
 ```
 
 ### 5. Launch the Jupyter Notebook
-For an interactive, step-by-step walkthrough:
+Walk through the interactive 2-part empirical analysis:
 ```bash
 jupyter notebook life_expectancy_gdp.ipynb
 ```
 
 ---
 
-## 📖 Methodology & Data Description
+## 📖 Methodology & Indicators
 
-The dataset `all_data.csv` contains **96 rows** across **4 columns**:
+Data is sourced from the **World Bank Open Data API**:
 
-| Column Name | Type | Description | Source |
+| Indicator Code | Name | Unit | Source |
 | :--- | :--- | :--- | :--- |
-| `Country` | string | Nation name (6 unique countries) | WHO / World Bank |
-| `Year` | integer | Observation year (2000–2015) | — |
-| `Life expectancy at birth (years)` | float | Average life expectancy at birth in years | [World Health Organization](http://apps.who.int/gho/data/node.main.688) |
-| `GDP` | float | Gross Domestic Product in current U.S. Dollars | [World Bank](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD) |
+| `SP.DYN.LE00.IN` | Life expectancy at birth, total | Years | World Bank / WHO Global Health Observatory |
+| `NY.GDP.MKTP.CD` | GDP (current US$) | Current U.S. Dollars | World Bank national accounts data |
 
-### Analytical Techniques Used
-* **Data Cleansing:** Standardized column names, scaled economic values into Billions/Trillions USD, created logarithmic transformations.
-* **Univariate & Bivariate EDA:** Kernel Density Estimation (KDE), histograms, violin plots, and jittered strip plots.
-* **Longitudinal Modeling:** Faceted time-series grids (`sns.FacetGrid`) with independent axis scaling.
-* **Econometric Analysis:** Compound Annual Growth Rate (CAGR), Pearson product-moment correlation coefficients, and log-linear regression modeling (Preston Curve).
+### Analytical Framework
+* **Epoch Segmentation:** Split into Era 1 (2000–2015) and Era 2 (2016–2024) to evaluate structural stability before and during the pandemic.
+* **Log-Linear Econometrics:** Testing the concavity of the health production function ($\text{LE} = \beta_0 + \beta_1 \log_{10}(\text{GDP})$).
+* **Decoupling Metrics:** Pearson product-moment correlation tracking over time.
 
 ---
 
 ## 📚 References
 * Preston, S. H. (1975). *The Changing Relation between Mortality and Level of Economic Development*. Population Studies, 29(2), 231–248.
-* World Health Organization. (2018). *Global Health Observatory (GHO) data*.
-* World Bank. (2018). *World Development Indicators: GDP (current US$)*.
+* World Bank. (2024). *World Development Indicators: GDP and Life Expectancy Data*.
+* World Health Organization. (2024). *The Global Health Observatory*.
 
 ---
 
 ## 📄 License
-This project is open-source and available under the [MIT License](LICENSE).
+This project is open-source under the [MIT License](LICENSE).
